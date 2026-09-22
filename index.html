@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>🌼 Feliz Día de las Flores Amarillas</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%8C%BC%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Give+You+Glory&family=Cormorant+Garamond:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-0:#07050300;
+    --petal-light:#ffe6a0;
+    --petal-mid:#ffc257;
+    --petal-deep:#e08a1f;
+    --center-1:#ffd27a;
+    --center-2:#c65a1e;
+    --stem-1:#6f9a52;
+    --stem-2:#2c3f22;
+    --ribbon-1:#e3b354;
+    --ribbon-2:#a06f22;
+    --glow:#ffe1a6;
+    --cream:#f6ead0;
+  }
+
+  *{box-sizing:border-box;}
+
+  html,body{
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100%;
+    background:
+      radial-gradient(ellipse at 50% 38%, #14100a 0%, #08060400 55%),
+      #000;
+    overflow:hidden;
+    font-family:'Cormorant Garamond', serif;
+  }
+
+  .scene{
+    position:relative;
+    width:100vw;
+    height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    perspective:1200px;
+    opacity:0;
+    animation:reveal 2.6s ease-out forwards;
+  }
+
+  @keyframes reveal{ to{ opacity:1; } }
+
+  #lights{
+    position:fixed;
+    inset:0;
+    z-index:1;
+    pointer-events:none;
+  }
+
+  .light{
+    position:absolute;
+    border-radius:50%;
+    background:radial-gradient(circle, var(--glow) 0%, rgba(255,225,166,0) 72%);
+    animation:twinkle var(--dur) ease-in-out var(--delay) infinite;
+  }
+
+  @keyframes twinkle{
+    0%,100%{ opacity:.15; transform:scale(.7); }
+    50%{ opacity:.95; transform:scale(1.2); }
+  }
+
+  .firefly{
+    position:fixed;
+    width:5px;
+    height:5px;
+    border-radius:50%;
+    background:#ffedb8;
+    box-shadow:0 0 9px 3px rgba(255,221,150,.85);
+    z-index:5;
+    pointer-events:none;
+    left:50%;
+    top:50%;
+  }
+
+  #bouquet-wrap{
+    position:relative;
+    z-index:4;
+    transform-style:preserve-3d;
+    transition:transform .35s ease-out;
+    will-change:transform;
+  }
+
+  .bouquet{
+    position:relative;
+    width:380px;
+    height:440px;
+    animation:breathe 7s ease-in-out infinite;
+  }
+
+  @keyframes breathe{
+    0%,100%{ transform:scale(1) rotate(0deg); }
+    50%{ transform:scale(1.015) rotate(.4deg); }
+  }
+
+  .stem-aim{
+    position:absolute;
+    left:50%;
+    bottom:66px;
+    width:0;
+    transform-origin:50% 100%;
+  }
+
+  .stem-sway{
+    position:absolute;
+    left:50%;
+    bottom:0;
+    width:4px;
+    height:100%;
+    transform:translateX(-50%) rotate(0deg);
+    transform-origin:50% 100%;
+    background:linear-gradient(to top, var(--stem-2), var(--stem-1));
+    border-radius:3px;
+    opacity:.72;
+    box-shadow:0 0 6px rgba(110,160,80,.35);
+    animation:sway var(--sway-dur) ease-in-out var(--sway-delay) infinite alternate;
+  }
+
+  @keyframes sway{
+    0%{ transform:translateX(-50%) rotate(-2.6deg); }
+    100%{ transform:translateX(-50%) rotate(2.6deg); }
+  }
+
+  .flower-head{
+    position:absolute;
+    left:50%;
+    top:0;
+    width:var(--size);
+    height:var(--size);
+    transform:translate(-50%, -58%);
+  }
+
+  .petal{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:32%;
+    height:50%;
+    margin:-50% 0 0 -16%;
+    transform-origin:50% 100%;
+    border-radius:50% 50% 50% 50% / 65% 65% 35% 35%;
+    background:linear-gradient(to top, var(--petal-deep), var(--petal-mid) 55%, var(--petal-light));
+    opacity:.8;
+    mix-blend-mode:screen;
+    box-shadow:0 0 16px rgba(255,190,70,.32);
+  }
+
+  .flower-center{
+    position:absolute;
+    left:50%;
+    top:50%;
+    width:26%;
+    height:26%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:radial-gradient(circle, var(--center-1) 0%, var(--center-2) 72%);
+    box-shadow:0 0 20px 6px rgba(255,170,60,.4);
+    animation:pulseGlow 3.6s ease-in-out infinite;
+  }
+
+  @keyframes pulseGlow{
+    0%,100%{ box-shadow:0 0 16px 4px rgba(255,170,60,.38); }
+    50%{ box-shadow:0 0 28px 10px rgba(255,195,95,.6); }
+  }
+
+  .ribbon{
+    position:absolute;
+    left:50%;
+    bottom:50px;
+    width:48px;
+    height:22px;
+    transform:translateX(-50%);
+    background:linear-gradient(135deg, var(--ribbon-1), var(--ribbon-2));
+    border-radius:5px 5px 14px 14px;
+    opacity:.92;
+    box-shadow:0 0 12px rgba(217,164,65,.4);
+  }
+  .ribbon::before, .ribbon::after{
+    content:'';
+    position:absolute;
+    top:-9px;
+    width:18px;
+    height:16px;
+    background:linear-gradient(135deg, var(--ribbon-1), var(--ribbon-2));
+    opacity:.92;
+  }
+  .ribbon::before{ left:-6px; border-radius:60% 10% 60% 10%; transform:rotate(-18deg); }
+  .ribbon::after{ right:-6px; border-radius:10% 60% 10% 60%; transform:rotate(18deg); }
+
+  .message{
+    position:fixed;
+    bottom:6.5%;
+    left:50%;
+    transform:translateX(-50%);
+    text-align:center;
+    z-index:6;
+    color:var(--cream);
+    font-family:'Give You Glory', cursive;
+    font-size:clamp(1.5rem, 4.4vw, 2.5rem);
+    line-height:1.55;
+    text-shadow:0 0 18px rgba(255,220,160,.4), 0 0 40px rgba(255,190,110,.15);
+    opacity:0;
+    animation:revealText 2s ease-out 1.1s forwards;
+    padding:0 16px;
+    width:100%;
+  }
+
+  @keyframes revealText{ to{ opacity:1; } }
+
+  .message .heart{
+    display:inline-block;
+    animation:heartbeat 1.8s ease-in-out infinite;
+  }
+
+  @keyframes heartbeat{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.18); }
+  }
+
+  @media (max-width:480px){
+    .bouquet{ transform:scale(.72); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *, *::before, *::after{
+      animation-duration:.001ms !important;
+      animation-iteration-count:1 !important;
+      transition:none !important;
+    }
+    .scene{ opacity:1; }
+    .message{ opacity:1; }
+  }
+</style>
+</head>
+<body>
+
+  <div id="lights"></div>
+
+  <div class="scene">
+    <div id="bouquet-wrap">
+      <div class="bouquet" id="bouquet"></div>
+    </div>
+  </div>
+
+  <p class="message">
+    Una flor para otra flor.<br>
+    Feliz día de las flores amarillas Andy <span class="heart">&lt;3</span>
+  </p>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const bouquet = document.getElementById('bouquet');
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // --- Configuración de cada flor del ramo (ángulo, largo de tallo, tamaño) ---
+    const flowers = [
+      { angle:-34, len:168, size:76,  sd:.10, sdur:5.2 },
+      { angle:-19, len:198, size:92,  sd:.55, sdur:4.6 },
+      { angle:-4,  len:220, size:102, sd:.20, sdur:5.9 },
+      { angle:10,  len:208, size:96,  sd:.85, sdur:4.9 },
+      { angle:24,  len:184, size:82,  sd:.40, sdur:5.4 },
+      { angle:38,  len:156, size:68,  sd:.70, sdur:5.0 }
+    ];
+
+    flowers.forEach(f => {
+      const aim = document.createElement('div');
+      aim.className = 'stem-aim';
+      aim.style.height = f.len + 'px';
+      aim.style.transform = `translateX(-50%) rotate(${f.angle}deg)`;
+
+      const sway = document.createElement('div');
+      sway.className = 'stem-sway';
+      sway.style.setProperty('--sway-dur', f.sdur + 's');
+      sway.style.setProperty('--sway-delay', f.sd + 's');
+
+      const head = document.createElement('div');
+      head.className = 'flower-head';
+      head.style.setProperty('--size', f.size + 'px');
+
+      for (let i = 0; i < 8; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.transform = `rotate(${(360 / 8) * i}deg)`;
+        head.appendChild(petal);
+      }
+
+      const center = document.createElement('div');
+      center.className = 'flower-center';
+      head.appendChild(center);
+
+      sway.appendChild(head);
+      aim.appendChild(sway);
+      bouquet.appendChild(aim);
+    });
+
+    const ribbon = document.createElement('div');
+    ribbon.className = 'ribbon';
+    bouquet.appendChild(ribbon);
+
+    // --- Lucecitas tipo bokeh alrededor de toda la pantalla ---
+    const lightsWrap = document.getElementById('lights');
+    const NUM_LIGHTS = 60;
+    for (let i = 0; i < NUM_LIGHTS; i++) {
+      const l = document.createElement('div');
+      l.className = 'light';
+      const isBig = Math.random() < 0.12;
+      const size = isBig ? (Math.random() * 18 + 14) : (Math.random() * 2.5 + 1.5);
+      l.style.width = size + 'px';
+      l.style.height = size + 'px';
+      l.style.left = Math.random() * 100 + '%';
+      l.style.top = Math.random() * 100 + '%';
+      l.style.setProperty('--dur', (Math.random() * 4 + 3) + 's');
+      l.style.setProperty('--delay', (Math.random() * 5) + 's');
+      if (isBig) l.style.filter = 'blur(4px)';
+      lightsWrap.appendChild(l);
+    }
+
+    // --- Luciérnagas flotando de forma natural (curvas suaves, sin patrón repetitivo) ---
+    if (!reducedMotion) {
+      const NUM_FIRE = 7;
+      const fireflies = [];
+      for (let i = 0; i < NUM_FIRE; i++) {
+        const el = document.createElement('div');
+        el.className = 'firefly';
+        document.body.appendChild(el);
+        fireflies.push({
+          el,
+          baseX: Math.random() * 90 + 5,
+          baseY: Math.random() * 80 + 5,
+          ampX: Math.random() * 9 + 4,
+          ampY: Math.random() * 7 + 3,
+          speed: Math.random() * 0.3 + 0.14,
+          phase: Math.random() * Math.PI * 2
+        });
+      }
+
+      let t = 0;
+      function animateFireflies() {
+        t += 0.016;
+        fireflies.forEach(f => {
+          const x = f.baseX + Math.sin(t * f.speed + f.phase) * f.ampX;
+          const y = f.baseY + Math.cos(t * f.speed * 0.8 + f.phase) * f.ampY;
+          f.el.style.left = x + 'vw';
+          f.el.style.top = y + 'vh';
+          f.el.style.opacity = (0.35 + 0.55 * Math.abs(Math.sin(t * f.speed * 1.3 + f.phase))).toFixed(2);
+        });
+        requestAnimationFrame(animateFireflies);
+      }
+      requestAnimationFrame(animateFireflies);
+
+      // --- Leve inclinación del ramo siguiendo el cursor / el dedo ---
+      const wrap = document.getElementById('bouquet-wrap');
+      let targetX = 0, targetY = 0, curX = 0, curY = 0;
+
+      function setTarget(x, y) {
+        targetX = (x / window.innerWidth - 0.5) * 2;
+        targetY = (y / window.innerHeight - 0.5) * 2;
+      }
+      window.addEventListener('mousemove', e => setTarget(e.clientX, e.clientY));
+      window.addEventListener('touchmove', e => {
+        if (e.touches[0]) setTarget(e.touches[0].clientX, e.touches[0].clientY);
+      }, { passive: true });
+
+      function smoothTilt() {
+        curX += (targetX - curX) * 0.04;
+        curY += (targetY - curY) * 0.04;
+        wrap.style.transform = `rotateY(${curX * 6}deg) rotateX(${-curY * 6}deg)`;
+        requestAnimationFrame(smoothTilt);
+      }
+      requestAnimationFrame(smoothTilt);
+    }
+  });
+</script>
+</body>
+</html>
